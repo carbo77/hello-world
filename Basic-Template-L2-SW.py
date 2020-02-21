@@ -37,7 +37,7 @@ for Devices in Switches:
     ConfigBckp = open(Devices['ip'] + ".txt", "w")
     ConfigBckp.write(output)
     ConfigBckp.write("\n")
-    ConfigBckp.write("by WB")
+    ConfigBckp.write("by " + user)
     ConfigBckp.close()
     print(output)
 
