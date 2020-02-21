@@ -1,15 +1,24 @@
 from netmiko import ConnectHandler
 
-iosv_l2 = {
+MyDevices = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.22',
     'username': 'wbohsainadm',
     'password': 'Maybe20?'
 }
+print (MyDevices['ip'])
+connected = ConnectHandler(**MyDevices)
+output = connected.send_command('terminal lenght 0')
+output = connected.send_command('show run')
+ConfigBckp = open("SWConfig.txt","w")
 
-net_connect = ConnectHandler(**iosv_l2)
-output = net_connect.send_command('show ip int brief')
+ConfigBckp.write(output)
+ConfigBckp.write("\n")
+ConfigBckp.write("by WB")
+ConfigBckp.close()
 print (output)
+
+
 
 #config_commands = ['int loop 0', 'ip address 1.1.1.1 255.255.255.0']
 #output = net_connect.send_config_set(config_commands)
