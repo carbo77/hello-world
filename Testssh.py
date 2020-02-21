@@ -1,20 +1,76 @@
 from netmiko import ConnectHandler
 
-SW1 = {
+SW22 = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.22',
     'username': 'wbohsainadm',
     'password': 'Maybe20?'
 }
 
-SW2 = {
+SW23 = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.23',
     'username': 'wbohsainadm',
     'password': 'Maybe20?'
 }
 
-Switches = [SW1,SW2]
+SW24 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.24',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW25 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.25',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW26 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.26',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+SW27 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.27',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW28 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.28',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW29 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.29',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW30 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.30',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+SW33 = {
+    'device_type': 'cisco_ios',
+    'ip': '10.3.254.33',
+    'username': 'wbohsainadm',
+    'password': 'Maybe20?'
+}
+
+
+Switches = [SW22,SW23,SW24,SW25,SW26,SW27,SW28,SW29,SW30,SW33]
 
 for Devices in Switches:
     connected = ConnectHandler(**Devices)
