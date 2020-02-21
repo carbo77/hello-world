@@ -69,27 +69,24 @@ SW33 = {
     'password': 'Maybe20?'
 }
 
-
-Switches = [SW22,SW23,SW24,SW25,SW26,SW27,SW28,SW29,SW30,SW33]
+Switches = [SW22, SW23]
 
 for Devices in Switches:
     connected = ConnectHandler(**Devices)
     output = connected.send_command('terminal lenght 0')
     output = connected.send_command('show run')
-    ConfigBckp = open(Devices['ip']+".txt","w")
+    ConfigBckp = open(Devices['ip'] + ".txt", "w")
     ConfigBckp.write(output)
     ConfigBckp.write("\n")
     ConfigBckp.write("by WB")
     ConfigBckp.close()
-    print (output)
+    print(output)
 
+# config_commands = ['int loop 0', 'ip address 1.1.1.1 255.255.255.0']
+# output = net_connect.send_config_set(config_commands)
+# print (output)
 
-
-#config_commands = ['int loop 0', 'ip address 1.1.1.1 255.255.255.0']
-#output = net_connect.send_config_set(config_commands)
-#print (output)
-
-#for n in range (2,21):
+# for n in range (2,21):
 #    print ("Creating VLAN " + str(n))
 #    config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
 #    output = net_connect.send_config_set(config_commands)
