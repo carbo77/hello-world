@@ -6,11 +6,11 @@ MyDevices = {
     'username': 'wbohsainadm',
     'password': 'Maybe20?'
 }
-print (MyDevices['ip'])
+
 connected = ConnectHandler(**MyDevices)
 output = connected.send_command('terminal lenght 0')
 output = connected.send_command('show run')
-ConfigBckp = open("SWConfig.txt","w")
+ConfigBckp = open(MyDevices['ip']+".txt","w")
 
 ConfigBckp.write(output)
 ConfigBckp.write("\n")
