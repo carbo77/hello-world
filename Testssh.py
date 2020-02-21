@@ -1,75 +1,34 @@
+import getpass
 from netmiko import ConnectHandler
+
+print ("Enter Username and Password")
+user = input ("Username: ")
+#print (user)
+password = getpass.getpass(prompt="Password: ")
+#print ("You typed " , password)
 
 SW22 = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.22',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
+    'username': user,
+    'password': password
 }
 
 SW23 = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.23',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
+    'username': user,
+    'password': password
 }
 
 SW24 = {
     'device_type': 'cisco_ios',
     'ip': '10.3.254.24',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
+    'username': user,
+    'password': password
 }
 
-SW25 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.25',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-SW26 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.26',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-SW27 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.27',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-SW28 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.28',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-SW29 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.29',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-SW30 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.30',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-SW33 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.33',
-    'username': 'wbohsainadm',
-    'password': 'Maybe20?'
-}
-
-Switches = [SW22, SW23]
+Switches = [SW22,SW23,SW24]
 
 for Devices in Switches:
     connected = ConnectHandler(**Devices)
@@ -78,7 +37,7 @@ for Devices in Switches:
     ConfigBckp = open(Devices['ip'] + ".txt", "w")
     ConfigBckp.write(output)
     ConfigBckp.write("\n")
-    ConfigBckp.write("by WB")
+    ConfigBckp.write("by " + user)
     ConfigBckp.close()
     print(output)
 

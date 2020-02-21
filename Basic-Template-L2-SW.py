@@ -28,7 +28,7 @@ SW24 = {
     'password': password
 }
 
-Switches = [SW22]
+Switches = [SW22,SW23,SW24]
 
 for Devices in Switches:
     connected = ConnectHandler(**Devices)
