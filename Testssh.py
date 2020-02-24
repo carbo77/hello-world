@@ -3,50 +3,31 @@ from netmiko import ConnectHandler
 
 print ("Enter Username and Password")
 user = input ("Username: ")
-#print (user)
 password = getpass.getpass(prompt="Password: ")
-#print ("You typed " , password)
 
-SW22 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.22',
-    'username': user,
-    'password': password
-}
+# Read Basic Template
+with open('L2BasicTemplate.txt') as f:
+    commands_list = f.read().splitlines()
 
-SW23 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.23',
-    'username': user,
-    'password': password
-}
+# List of devices to build
+with open('devicelist.txt') as f:
+    devices_list = f.read().splitlines()
 
-SW24 = {
-    'device_type': 'cisco_ios',
-    'ip': '10.3.254.24',
-    'username': user,
-    'password': password
-}
+# Fill dictionary for Netmiko connections
+for devices in devices_list:
+    print ('Connecting to device" ' + devices)
+    ip_address_of_device = devices
+    Cisco_ios_device = {
+        'device_type': 'cisco_ios',
+        'ip': ip_address_of_device,
+        'username': user,
+        'password': password
+    }
+# Connect to the first device on dict Cisco IOS device
+    sessionssh = ConnectHandler(**Cisco_ios_device)
+    output = sessionssh.send_config_set(commands_list)
+    print (output)
 
-Switches = [SW22,SW23,SW24]
 
-for Devices in Switches:
-    connected = ConnectHandler(**Devices)
-    output = connected.send_command('terminal lenght 0')
-    output = connected.send_command('show run')
-    ConfigBckp = open(Devices['ip'] + ".txt", "w")
-    ConfigBckp.write(output)
-    ConfigBckp.write("\n")
-    ConfigBckp.write("by " + user)
-    ConfigBckp.close()
-    print(output)
 
-# config_commands = ['int loop 0', 'ip address 1.1.1.1 255.255.255.0']
-# output = net_connect.send_config_set(config_commands)
-# print (output)
 
-# for n in range (2,21):
-#    print ("Creating VLAN " + str(n))
-#    config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
-#    output = net_connect.send_config_set(config_commands)
-#    print (output)

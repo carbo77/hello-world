@@ -3,9 +3,8 @@ from netmiko import ConnectHandler
 
 print ("Enter Username and Password")
 user = input ("Username: ")
-#print (user)
 password = getpass.getpass(prompt="Password: ")
-#print ("You typed " , password)
+
 
 SW22 = {
     'device_type': 'cisco_ios',
@@ -28,12 +27,14 @@ SW24 = {
     'password': password
 }
 
+L2-basic-tmp = open("mytemp.txt","r")
+
 Switches = [SW22,SW23,SW24]
 
 for Devices in Switches:
     connected = ConnectHandler(**Devices)
-    output = connected.send_command('terminal lenght 0')
     output = connected.send_command('show run')
+# Netmiko instead of command send_config_set()
     ConfigBckp = open(Devices['ip'] + ".txt", "w")
     ConfigBckp.write(output)
     ConfigBckp.write("\n")
@@ -51,3 +52,14 @@ for Devices in Switches:
 #    output = net_connect.send_config_set(config_commands)
 #    print (output)
 
+
+
+#for Devices in Switches:
+#    connected = ConnectHandler(**Devices)
+#    output = connected.send_command('terminal lenght 0')
+#    output = connected.send_command('show run')
+#    with open(Devices['ip'] + ".txt","w") as ConfigBckp:
+#        ConfigBckp.write(output)
+#        ConfigBckp.write("\n")
+#        ConfigBckp.write("by " + user)
+#        print(output)
